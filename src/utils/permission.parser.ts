@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: permission.parser.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { PermissionDto } from "../dtos/role.dto";
 
 const FetchRequiredPerms = (

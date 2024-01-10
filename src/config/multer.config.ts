@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: multer.config.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Request } from "express";
 import multer from "multer";
 import { storage } from "./cloudinary.config";
@@ -17,7 +25,9 @@ const multerOptions: multer.Options = {
             cb(null, true);
         } else {
             cb(null, false);
-            const err = new Error("Only .png, .jpg, .jpeg formats are allowed!");
+            const err = new Error(
+                "Only .png, .jpg, .jpeg formats are allowed!"
+            );
             err.name = "ExtensionError";
             return cb(err);
         }

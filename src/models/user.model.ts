@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: user.model.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { model, Model, Schema } from "mongoose";
 import { UserSchemaDto } from "../dtos/user.dto";
 import { genSaltSync, hashSync } from "bcryptjs";

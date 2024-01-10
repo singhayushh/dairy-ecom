@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: console.route.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Router } from "express";
 import * as console from "../controllers/console.controller";
 import * as product from "../controllers/product.controller";

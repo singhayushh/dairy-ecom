@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: redis.config.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { createClient, RedisClientType } from "redis";
 import env from "./env.config";
 
@@ -5,7 +13,9 @@ import env from "./env.config";
  * Redis configuration parameters.
  */
 const redisConfig = {
-    password: env.REDIS_PASSWORD ? encodeURIComponent(String(env.REDIS_PASSWORD)) : "",
+    password: env.REDIS_PASSWORD
+        ? encodeURIComponent(String(env.REDIS_PASSWORD))
+        : "",
     host: String(env.REDIS_HOST ?? "127.0.0.1"),
     port: Number(env.REDIS_PORT ?? 6379),
 };

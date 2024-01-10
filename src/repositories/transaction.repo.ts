@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: transaction.repo.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Types } from "mongoose";
 import {
     TransactionDto,
@@ -38,7 +46,8 @@ const deleteOne = async (
 const find = async (
     userId?: Types.ObjectId
 ): Promise<TransactionSchemaDto[]> => {
-    if (userId) return Transaction.find({ by: userId }).sort({ createdAt: 1 }).lean();
+    if (userId)
+        return Transaction.find({ by: userId }).sort({ createdAt: 1 }).lean();
     return Transaction.find().sort({ createdAt: 1 }).lean();
 };
 
@@ -80,11 +89,4 @@ const updateOne = async (
     return Transaction.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
-export {
-    create,
-    deleteOne,
-    find,
-    findOne,
-    findOneBySlug,
-    updateOne,
-};
+export { create, deleteOne, find, findOne, findOneBySlug, updateOne };

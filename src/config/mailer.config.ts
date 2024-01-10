@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: mailer.config.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import nodemailer, { Transporter } from "nodemailer";
 import env from "./env.config";
 

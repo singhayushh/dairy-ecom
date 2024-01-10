@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: swagger.config.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import swaggerJSDoc from "swagger-jsdoc";
 import env from "./env.config";
 

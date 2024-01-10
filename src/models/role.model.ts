@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: role.model.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Model, Schema, model } from "mongoose";
 import { RoleSchemaDto } from "../dtos/role.dto";
 

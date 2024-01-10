@@ -1,7 +1,15 @@
-import { randomBytes } from 'crypto';
-import { RoleDto, RoleSchemaDto, RoleUpdateDto } from '../dtos/role.dto';
-import * as roleRepository from '../repositories/role.repo';
-import { Types } from 'mongoose';
+/*
+ * Author: Ayush Singh
+ * File: role.service.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
+import { randomBytes } from "crypto";
+import { RoleDto, RoleSchemaDto, RoleUpdateDto } from "../dtos/role.dto";
+import * as roleRepository from "../repositories/role.repo";
+import { Types } from "mongoose";
 
 /**
  * Creates a new role.
@@ -11,11 +19,11 @@ import { Types } from 'mongoose';
  * @returns Promise<RoleSchemaDto> - Created role.
  */
 const createRole = (dto: RoleDto): Promise<RoleSchemaDto> => {
-  // Generate a unique slug for the role using random bytes
-  dto.slug = randomBytes(3).toString('hex');
+    // Generate a unique slug for the role using random bytes
+    dto.slug = randomBytes(3).toString("hex");
 
-  // Call the repository function to create the role
-  return roleRepository.create(dto);
+    // Call the repository function to create the role
+    return roleRepository.create(dto);
 };
 
 /**
@@ -25,14 +33,14 @@ const createRole = (dto: RoleDto): Promise<RoleSchemaDto> => {
  * @returns Promise<RoleSchemaDto | null> - Deleted role or null if not found.
  */
 const deleteRole = async (slug: string): Promise<RoleSchemaDto | null> => {
-  // Find the role by its slug
-  const role = await roleRepository.findOneBySlug(slug);
+    // Find the role by its slug
+    const role = await roleRepository.findOneBySlug(slug);
 
-  // If the role is not found, return null
-  if (!role) return null;
+    // If the role is not found, return null
+    if (!role) return null;
 
-  // Call the repository function to delete the role
-  return roleRepository.deleteOne(role._id);
+    // Call the repository function to delete the role
+    return roleRepository.deleteOne(role._id);
 };
 
 /**
@@ -42,8 +50,8 @@ const deleteRole = async (slug: string): Promise<RoleSchemaDto | null> => {
  * @returns Promise<RoleSchemaDto[]> - List of rolees.
  */
 const fetchAllRole = async (): Promise<RoleSchemaDto[]> => {
-  // Call the repository function to find all rolees for the user
-  return roleRepository.find();
+    // Call the repository function to find all rolees for the user
+    return roleRepository.find();
 };
 
 /**
@@ -53,8 +61,8 @@ const fetchAllRole = async (): Promise<RoleSchemaDto[]> => {
  * @returns Promise<RoleSchemaDto | null> - Found role or null if not found.
  */
 const fetchRole = async (slug: string): Promise<RoleSchemaDto | null> => {
-  // Call the repository function to find the role by its slug
-  return roleRepository.findOneBySlug(slug);
+    // Call the repository function to find the role by its slug
+    return roleRepository.findOneBySlug(slug);
 };
 
 /**
@@ -63,9 +71,11 @@ const fetchRole = async (slug: string): Promise<RoleSchemaDto | null> => {
  * @param id - Unique identifier for the role.
  * @returns Promise<RoleSchemaDto | null> - Found role or null if not found.
  */
-const fetchRoleById = async (id: Types.ObjectId): Promise<RoleSchemaDto | null> => {
-  // Call the repository function to find the role by its slug
-  return roleRepository.findOne(id);
+const fetchRoleById = async (
+    id: Types.ObjectId
+): Promise<RoleSchemaDto | null> => {
+    // Call the repository function to find the role by its slug
+    return roleRepository.findOne(id);
 };
 
 /**
@@ -75,22 +85,25 @@ const fetchRoleById = async (id: Types.ObjectId): Promise<RoleSchemaDto | null> 
  * @param dto - RoleUpdateDto containing updated role details.
  * @returns Promise<RoleSchemaDto | null> - Updated role or null if not found.
  */
-const updateRole = async (slug: string, dto: RoleUpdateDto): Promise<RoleSchemaDto | null> => {
-  // Find the role by its slug
-  const role = await roleRepository.findOneBySlug(slug);
+const updateRole = async (
+    slug: string,
+    dto: RoleUpdateDto
+): Promise<RoleSchemaDto | null> => {
+    // Find the role by its slug
+    const role = await roleRepository.findOneBySlug(slug);
 
-  // If the role is not found, return null
-  if (!role) return null;
+    // If the role is not found, return null
+    if (!role) return null;
 
-  // Call the repository function to update the role
-  return roleRepository.updateOne(role._id, dto);
+    // Call the repository function to update the role
+    return roleRepository.updateOne(role._id, dto);
 };
 
 export {
-  createRole,
-  deleteRole,
-  fetchRole,
-  fetchRoleById,
-  fetchAllRole,
-  updateRole,
+    createRole,
+    deleteRole,
+    fetchRole,
+    fetchRoleById,
+    fetchAllRole,
+    updateRole,
 };

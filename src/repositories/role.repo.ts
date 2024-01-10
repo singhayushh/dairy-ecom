@@ -1,9 +1,13 @@
+/*
+ * Author: Ayush Singh
+ * File: role.repo.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Types } from "mongoose";
-import {
-    RoleDto,
-    RoleSchemaDto,
-    RoleUpdateDto,
-} from "../dtos/role.dto";
+import { RoleDto, RoleSchemaDto, RoleUpdateDto } from "../dtos/role.dto";
 import { Role } from "../models/role.model";
 
 /**
@@ -12,9 +16,7 @@ import { Role } from "../models/role.model";
  * @param {RoleDto} createRoleDto the role object to be added to the db
  * @returns  {Promise<RoleSchemaDto>} the created role document
  */
-const create = async (
-    createRoleDto: RoleDto
-): Promise<RoleSchemaDto> => {
+const create = async (createRoleDto: RoleDto): Promise<RoleSchemaDto> => {
     return Role.create(createRoleDto);
 };
 
@@ -24,9 +26,7 @@ const create = async (
  * @param {Types.ObjectId} id the object id of the role
  * @returns  {(Promise<RoleSchemaDto | null>)} the deleted role document or null for incorrect id
  */
-const deleteOne = async (
-    id: Types.ObjectId
-): Promise<RoleSchemaDto | null> => {
+const deleteOne = async (id: Types.ObjectId): Promise<RoleSchemaDto | null> => {
     return Role.findOneAndDelete({ _id: id }).lean();
 };
 
@@ -35,9 +35,7 @@ const deleteOne = async (
  *
  * @returns  {Promise<RoleSchemaDto[]>} Array of role documents
  */
-const find = async (
-    userId?: Types.ObjectId
-): Promise<RoleSchemaDto[]> => {
+const find = async (userId?: Types.ObjectId): Promise<RoleSchemaDto[]> => {
     if (userId) return Role.find({ by: userId }).sort({ createdAt: 1 });
     return Role.find().sort({ createdAt: 1 }).lean();
 };
@@ -48,9 +46,7 @@ const find = async (
  * @param {Types.ObjectId} id object id of the role
  * @returns  {(Promise<RoleSchemaDto | null>)} the role document or null if id not present
  */
-const findOne = async (
-    id: Types.ObjectId
-): Promise<RoleSchemaDto | null> => {
+const findOne = async (id: Types.ObjectId): Promise<RoleSchemaDto | null> => {
     return Role.findById(id).lean();
 };
 
@@ -60,9 +56,7 @@ const findOne = async (
  * @param {string} slug slug // unique human-readable identifier of the role
  * @returns  {(Promise<RoleSchemaDto | null>)} the role document or null if slug not present
  */
-const findOneBySlug = async (
-    slug: string
-): Promise<RoleSchemaDto | null> => {
+const findOneBySlug = async (slug: string): Promise<RoleSchemaDto | null> => {
     return Role.findOne({ slug }).lean();
 };
 
@@ -80,11 +74,4 @@ const updateOne = async (
     return Role.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
-export {
-    create,
-    deleteOne,
-    find,
-    findOne,
-    findOneBySlug,
-    updateOne,
-};
+export { create, deleteOne, find, findOne, findOneBySlug, updateOne };

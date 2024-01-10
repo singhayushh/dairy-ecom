@@ -1,8 +1,13 @@
+/*
+ * Author: Ayush Singh
+ * File: cart.item.controller.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Request, Response, NextFunction } from "express";
-import {
-    CartItemDto,
-    CartItemUpdateDto,
-} from "../dtos/cart.item.dto";
+import { CartItemDto, CartItemUpdateDto } from "../dtos/cart.item.dto";
 import { generateResponse } from "../utils/response.creator";
 import * as cartItemService from "../services/cart.item.service";
 
@@ -71,9 +76,16 @@ const FetchAll = async (
 ): Promise<Response | void> => {
     try {
         // service call to fetch all cartItems
-        const cartItems = await cartItemService.fetchAllCartItem(res.locals.user._id)
+        const cartItems = await cartItemService.fetchAllCartItem(
+            res.locals.user._id
+        );
 
-        return res.render("settings/cart", { cartItems, user: res.locals.user, cart: res.locals.cart, notifications: res.locals.notifications });
+        return res.render("settings/cart", {
+            cartItems,
+            user: res.locals.user,
+            cart: res.locals.cart,
+            notifications: res.locals.notifications,
+        });
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -132,17 +144,11 @@ const Update = async (
         // if returned cartItem is null, which means incorrect cartItem id
         if (!cartItem) return res.redirect("/404");
 
-        return res.redirect("/settings/cart?message=success")
+        return res.redirect("/settings/cart?message=success");
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
     }
 };
 
-export {
-    Create,
-    Delete,
-    FetchAll,
-    FetchBySlug,
-    Update,
-};
+export { Create, Delete, FetchAll, FetchBySlug, Update };

@@ -1,5 +1,17 @@
+/*
+ * Author: Ayush Singh
+ * File: transaction.model.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Model, Schema, model } from "mongoose";
-import { PaymentMethod, TransactionSchemaDto, TransactionStatus } from "../dtos/transaction.dto";
+import {
+    PaymentMethod,
+    TransactionSchemaDto,
+    TransactionStatus,
+} from "../dtos/transaction.dto";
 
 const transactionSchema: Schema<TransactionSchemaDto> = new Schema(
     {

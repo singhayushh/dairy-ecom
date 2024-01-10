@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: user.repo.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Types } from "mongoose";
 import { UserUpdateDto, UserDto, UserSchemaDto } from "../dtos/user.dto";
 import { User } from "../models/user.model";
@@ -28,7 +36,11 @@ const deleteOne = async (id: Types.ObjectId): Promise<UserSchemaDto | null> => {
  * @returns {Promise<UserSchemaDto[]>} promise containing the returned list of user documents
  */
 const find = async (role?: Types.ObjectId): Promise<UserSchemaDto[]> => {
-    if (role) return User.find({ role }).select({ password: 0 }).sort({ createdAt: 1 }).lean();
+    if (role)
+        return User.find({ role })
+            .select({ password: 0 })
+            .sort({ createdAt: 1 })
+            .lean();
     return User.find().select({ password: 0 }).sort({ createdAt: 1 }).lean();
 };
 
@@ -122,9 +134,11 @@ const update = async (
     id: Types.ObjectId,
     dto: UserUpdateDto
 ): Promise<UserSchemaDto | null> => {
-    return User.findOneAndUpdate({ _id: id }, dto, { new: true }).select({
-        password: 0,
-    }).lean();
+    return User.findOneAndUpdate({ _id: id }, dto, { new: true })
+        .select({
+            password: 0,
+        })
+        .lean();
 };
 
 export {

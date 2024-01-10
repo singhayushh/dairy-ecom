@@ -1,9 +1,13 @@
+/*
+ * Author: Ayush Singh
+ * File: order.repo.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Types } from "mongoose";
-import {
-    OrderDto,
-    OrderSchemaDto,
-    OrderUpdateDto,
-} from "../dtos/order.dto";
+import { OrderDto, OrderSchemaDto, OrderUpdateDto } from "../dtos/order.dto";
 import { Order } from "../models/order.model";
 
 /**
@@ -12,9 +16,7 @@ import { Order } from "../models/order.model";
  * @param {OrderDto} createOrderDto the order object to be added to the db
  * @returns  {Promise<OrderSchemaDto>} the created order document
  */
-const create = async (
-    createOrderDto: OrderDto
-): Promise<OrderSchemaDto> => {
+const create = async (createOrderDto: OrderDto): Promise<OrderSchemaDto> => {
     return Order.create(createOrderDto);
 };
 
@@ -35,9 +37,7 @@ const deleteOne = async (
  *
  * @returns  {Promise<OrderSchemaDto[]>} Array of order documents
  */
-const find = async (
-    userId?: Types.ObjectId
-): Promise<OrderSchemaDto[]> => {
+const find = async (userId?: Types.ObjectId): Promise<OrderSchemaDto[]> => {
     if (userId) return Order.find({ by: userId }).sort({ createdAt: 1 }).lean();
     return Order.find().sort({ createdAt: 1 }).lean();
 };
@@ -48,9 +48,7 @@ const find = async (
  * @param {Types.ObjectId} id object id of the order
  * @returns  {(Promise<OrderSchemaDto | null>)} the order document or null if id not present
  */
-const findOne = async (
-    id: Types.ObjectId
-): Promise<OrderSchemaDto | null> => {
+const findOne = async (id: Types.ObjectId): Promise<OrderSchemaDto | null> => {
     return Order.findById(id).lean();
 };
 
@@ -60,9 +58,7 @@ const findOne = async (
  * @param {string} slug slug // unique human-readable identifier of the order
  * @returns  {(Promise<OrderSchemaDto | null>)} the order document or null if slug not present
  */
-const findOneBySlug = async (
-    slug: string
-): Promise<OrderSchemaDto | null> => {
+const findOneBySlug = async (slug: string): Promise<OrderSchemaDto | null> => {
     return Order.findOne({ identifier: slug }).lean();
 };
 
@@ -80,11 +76,4 @@ const updateOne = async (
     return Order.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
-export {
-    create,
-    deleteOne,
-    find,
-    findOne,
-    findOneBySlug,
-    updateOne,
-};
+export { create, deleteOne, find, findOne, findOneBySlug, updateOne };

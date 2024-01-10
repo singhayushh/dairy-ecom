@@ -1,8 +1,13 @@
+/*
+ * Author: Ayush Singh
+ * File: order.controller.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Request, Response, NextFunction } from "express";
-import {
-    OrderDto,
-    OrderUpdateDto,
-} from "../dtos/order.dto";
+import { OrderDto, OrderUpdateDto } from "../dtos/order.dto";
 import * as orderService from "../services/order.service";
 
 /**
@@ -74,8 +79,15 @@ const FetchAll = async (
     try {
         const page = String(req.query.page ?? "settings");
         // service call to fetch all orders
-        const orders = await orderService.fetchAllOrder( page == "console" ? undefined : res.locals.user._id);
-        return res.render(`/${page}/orders?page=${page}`, { orders, user: res.locals.user, cart: res.locals.cart, notifications: res.locals.notifications });
+        const orders = await orderService.fetchAllOrder(
+            page == "console" ? undefined : res.locals.user._id
+        );
+        return res.render(`/${page}/orders?page=${page}`, {
+            orders,
+            user: res.locals.user,
+            cart: res.locals.cart,
+            notifications: res.locals.notifications,
+        });
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -104,7 +116,12 @@ const FetchBySlug = async (
         // if order is null, which means incorrect order slug
         if (!order) return res.redirect("/404");
 
-        return res.render(`${page}/orders`, { order, user: res.locals.user, cart: res.locals.cart, notifications: res.locals.notifications });
+        return res.render(`${page}/orders`, {
+            order,
+            user: res.locals.user,
+            cart: res.locals.cart,
+            notifications: res.locals.notifications,
+        });
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -136,17 +153,11 @@ const Update = async (
         // if returned order is null, which means incorrect order id
         if (!order) return res.redirect("/404");
 
-        return res.redirect(`/${page}/orders?message=success&page=${page}`)
+        return res.redirect(`/${page}/orders?message=success&page=${page}`);
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
     }
 };
 
-export {
-    Create,
-    Delete,
-    FetchAll,
-    FetchBySlug,
-    Update,
-};
+export { Create, Delete, FetchAll, FetchBySlug, Update };

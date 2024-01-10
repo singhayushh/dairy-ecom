@@ -1,9 +1,13 @@
+/*
+ * Author: Ayush Singh
+ * File: asset.repo.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Types } from "mongoose";
-import {
-    AssetDto,
-    AssetSchemaDto,
-    AssetUpdateDto,
-} from "../dtos/asset.dto";
+import { AssetDto, AssetSchemaDto, AssetUpdateDto } from "../dtos/asset.dto";
 import { Asset } from "../models/asset.model";
 
 /**
@@ -12,9 +16,7 @@ import { Asset } from "../models/asset.model";
  * @param {AssetDto} createAssetDto the asset object to be added to the db
  * @returns  {Promise<AssetSchemaDto>} the created asset document
  */
-const create = async (
-    createAssetDto: AssetDto
-): Promise<AssetSchemaDto> => {
+const create = async (createAssetDto: AssetDto): Promise<AssetSchemaDto> => {
     return Asset.create(createAssetDto);
 };
 
@@ -35,9 +37,7 @@ const deleteOne = async (
  *
  * @returns  {Promise<AssetSchemaDto[]>} Array of asset documents
  */
-const find = async (
-    userId?: Types.ObjectId
-): Promise<AssetSchemaDto[]> => {
+const find = async (userId?: Types.ObjectId): Promise<AssetSchemaDto[]> => {
     if (userId) return Asset.find({ by: userId }).sort({ createdAt: 1 }).lean();
     return Asset.find().sort({ createdAt: 1 }).lean();
 };
@@ -48,9 +48,7 @@ const find = async (
  * @param {Types.ObjectId} id object id of the asset
  * @returns  {(Promise<AssetSchemaDto | null>)} the asset document or null if id not present
  */
-const findOne = async (
-    id: Types.ObjectId
-): Promise<AssetSchemaDto | null> => {
+const findOne = async (id: Types.ObjectId): Promise<AssetSchemaDto | null> => {
     return Asset.findById(id).lean();
 };
 
@@ -60,9 +58,7 @@ const findOne = async (
  * @param {string} slug slug // unique human-readable identifier of the asset
  * @returns  {(Promise<AssetSchemaDto | null>)} the asset document or null if slug not present
  */
-const findOneBySlug = async (
-    slug: string
-): Promise<AssetSchemaDto | null> => {
+const findOneBySlug = async (slug: string): Promise<AssetSchemaDto | null> => {
     return Asset.findOne({ slug }).lean();
 };
 
@@ -80,11 +76,4 @@ const updateOne = async (
     return Asset.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
-export {
-    create,
-    deleteOne,
-    find,
-    findOne,
-    findOneBySlug,
-    updateOne,
-};
+export { create, deleteOne, find, findOne, findOneBySlug, updateOne };

@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: address.repo.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Types } from "mongoose";
 import {
     AddressDto,
@@ -35,10 +43,9 @@ const deleteOne = async (
  *
  * @returns  {Promise<AddressSchemaDto[]>} Array of address documents
  */
-const find = async (
-    userId?: Types.ObjectId
-): Promise<AddressSchemaDto[]> => {
-    if (userId) return Address.find({ by: userId }).sort({ createdAt: 1 }).lean();
+const find = async (userId?: Types.ObjectId): Promise<AddressSchemaDto[]> => {
+    if (userId)
+        return Address.find({ by: userId }).sort({ createdAt: 1 }).lean();
     return Address.find().sort({ createdAt: 1 }).lean();
 };
 
@@ -80,11 +87,4 @@ const updateOne = async (
     return Address.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
-export {
-    create,
-    deleteOne,
-    find,
-    findOne,
-    findOneBySlug,
-    updateOne,
-};
+export { create, deleteOne, find, findOne, findOneBySlug, updateOne };

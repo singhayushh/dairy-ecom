@@ -1,9 +1,13 @@
+/*
+ * Author: Ayush Singh
+ * File: role.controller.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Request, Response, NextFunction } from "express";
-import {
-    RoleDto,
-    RoleSchemaDto,
-    RoleUpdateDto,
-} from "../dtos/role.dto";
+import { RoleDto, RoleSchemaDto, RoleUpdateDto } from "../dtos/role.dto";
 import { generateResponse } from "../utils/response.creator";
 import * as roleService from "../services/role.service";
 import { Types } from "mongoose";
@@ -24,8 +28,7 @@ const Create = async (
         // Prepare data transfer object for role creation
         const dto: RoleDto = { ...req.body };
         // Call create role service
-        const _role: RoleSchemaDto =
-            await roleService.createRole(dto);
+        const _role: RoleSchemaDto = await roleService.createRole(dto);
         return generateResponse(res, 201);
         // eslint-disable-next-line
     } catch (error: any) {
@@ -49,8 +52,7 @@ const Delete = async (
         const { slug } = req.params;
 
         // servical call to delete the role by given id and return the deleted role
-        const role: RoleSchemaDto | null =
-            await roleService.deleteRole(slug);
+        const role: RoleSchemaDto | null = await roleService.deleteRole(slug);
 
         // if returned role is null, which means incorrect role id
         if (!role) return generateResponse(res, 404);
@@ -76,8 +78,7 @@ const FetchAll = async (
 ): Promise<Response | void> => {
     try {
         // service call to fetch all roles
-        const roles: RoleSchemaDto[] =
-            await roleService.fetchAllRole();
+        const roles: RoleSchemaDto[] = await roleService.fetchAllRole();
 
         return generateResponse(res, 200, { roles });
         // eslint-disable-next-line
@@ -102,8 +103,9 @@ const FetchBySlug = async (
         const { slug } = req.params;
 
         // service call to fetch role by given slug
-        const role: RoleSchemaDto | null =
-            await roleService.fetchRole(String(slug));
+        const role: RoleSchemaDto | null = await roleService.fetchRole(
+            String(slug)
+        );
 
         // if role is null, which means incorrect role slug
         if (!role) return generateResponse(res, 404);
@@ -134,8 +136,10 @@ const Update = async (
         const dto: RoleUpdateDto = { ...req.body };
 
         // service call to update role by given id and fields and return updated role
-        const role: RoleSchemaDto | null =
-            await roleService.updateRole(slug, dto);
+        const role: RoleSchemaDto | null = await roleService.updateRole(
+            slug,
+            dto
+        );
 
         // if returned role is null, which means incorrect role id
         if (!role) return generateResponse(res, 404);
@@ -147,10 +151,4 @@ const Update = async (
     }
 };
 
-export {
-    Create,
-    Delete,
-    FetchAll,
-    FetchBySlug,
-    Update,
-};
+export { Create, Delete, FetchAll, FetchBySlug, Update };

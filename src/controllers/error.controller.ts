@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: error.controller.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { NextFunction, Request, Response } from "express";
 import { logger } from "../utils/logger.util";
 

@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: product.repo.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Types } from "mongoose";
 import {
     ProductDto,
@@ -35,10 +43,9 @@ const deleteOne = async (
  *
  * @returns  {Promise<ProductSchemaDto[]>} Array of product documents
  */
-const find = async (
-    userId?: Types.ObjectId
-): Promise<ProductSchemaDto[]> => {
-    if (userId) return Product.find({ by: userId }).sort({ createdAt: 1 }).lean();
+const find = async (userId?: Types.ObjectId): Promise<ProductSchemaDto[]> => {
+    if (userId)
+        return Product.find({ by: userId }).sort({ createdAt: 1 }).lean();
     return Product.find().sort({ createdAt: 1 }).lean();
 };
 
@@ -80,11 +87,4 @@ const updateOne = async (
     return Product.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
-export {
-    create,
-    deleteOne,
-    find,
-    findOne,
-    findOneBySlug,
-    updateOne,
-};
+export { create, deleteOne, find, findOne, findOneBySlug, updateOne };

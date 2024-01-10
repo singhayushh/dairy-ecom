@@ -1,8 +1,13 @@
+/*
+ * Author: Ayush Singh
+ * File: transaction.controller.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Request, Response, NextFunction } from "express";
-import {
-    TransactionDto,
-    TransactionUpdateDto,
-} from "../dtos/transaction.dto";
+import { TransactionDto, TransactionUpdateDto } from "../dtos/transaction.dto";
 import * as transactionService from "../services/transaction.service";
 
 /**
@@ -70,9 +75,16 @@ const FetchAll = async (
 ): Promise<Response | void> => {
     try {
         // service call to fetch all transactions
-        const transactions = await transactionService.fetchAllTransaction(res.locals.user._id)
+        const transactions = await transactionService.fetchAllTransaction(
+            res.locals.user._id
+        );
 
-        return res.render("console/transactions", { transactions, user: res.locals.user, cart: res.locals.cart, notifications: res.locals.notifications });
+        return res.render("console/transactions", {
+            transactions,
+            user: res.locals.user,
+            cart: res.locals.cart,
+            notifications: res.locals.notifications,
+        });
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -95,12 +107,16 @@ const FetchBySlug = async (
         const { slug } = req.params;
 
         // service call to fetch transaction by given slug
-        const transaction = await transactionService.fetchTransaction(String(slug));
+        const transaction = await transactionService.fetchTransaction(
+            String(slug)
+        );
 
         // if transaction is null, which means incorrect transaction slug
         if (!transaction) return res.redirect("/404");
 
-        return res.redirect(`/console/transactions/${transaction.slug}?message=success`);
+        return res.redirect(
+            `/console/transactions/${transaction.slug}?message=success`
+        );
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -126,22 +142,19 @@ const Update = async (
         const dto: TransactionUpdateDto = { ...req.body };
 
         // service call to update transaction by given id and fields and return updated transaction
-        const transaction = await transactionService.updateTransaction(slug, dto);
+        const transaction = await transactionService.updateTransaction(
+            slug,
+            dto
+        );
 
         // if returned transaction is null, which means incorrect transaction id
         if (!transaction) return res.redirect("/404");
 
-        return res.redirect("/console/transactions?message=success")
+        return res.redirect("/console/transactions?message=success");
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
     }
 };
 
-export {
-    Create,
-    Delete,
-    FetchAll,
-    FetchBySlug,
-    Update,
-};
+export { Create, Delete, FetchAll, FetchBySlug, Update };

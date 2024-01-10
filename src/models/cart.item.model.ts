@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: cart.item.model.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Model, Schema, model } from "mongoose";
 import { CartItemSchemaDto } from "../dtos/cart.item.dto";
 

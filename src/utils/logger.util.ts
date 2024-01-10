@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: logger.util.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { createLogger, format, transports } from "winston";
 import "winston-daily-rotate-file";
 import { DailyRotateFileTransportOptions } from "winston-daily-rotate-file";

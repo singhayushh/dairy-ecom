@@ -1,8 +1,13 @@
+/*
+ * Author: Ayush Singh
+ * File: product.controller.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Request, Response, NextFunction } from "express";
-import {
-    ProductDto,
-    ProductUpdateDto,
-} from "../dtos/product.dto";
+import { ProductDto, ProductUpdateDto } from "../dtos/product.dto";
 import * as productService from "../services/product.service";
 
 /**
@@ -70,9 +75,16 @@ const FetchAll = async (
 ): Promise<Response | void> => {
     try {
         // service call to fetch all products
-        const products = await productService.fetchAllProduct(res.locals.user._id)
+        const products = await productService.fetchAllProduct(
+            res.locals.user._id
+        );
 
-        return res.render("console/products", { products, user: res.locals.user, cart: res.locals.cart, notifications: res.locals.notifications });
+        return res.render("console/products", {
+            products,
+            user: res.locals.user,
+            cart: res.locals.cart,
+            notifications: res.locals.notifications,
+        });
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -100,7 +112,9 @@ const FetchBySlug = async (
         // if product is null, which means incorrect product slug
         if (!product) return res.redirect("/404");
 
-        return res.redirect(`/console/products/${product.slug}?message=success`);
+        return res.redirect(
+            `/console/products/${product.slug}?message=success`
+        );
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -131,17 +145,11 @@ const Update = async (
         // if returned product is null, which means incorrect product id
         if (!product) return res.redirect("/404");
 
-        return res.redirect("/console/products?message=success")
+        return res.redirect("/console/products?message=success");
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
     }
 };
 
-export {
-    Create,
-    Delete,
-    FetchAll,
-    FetchBySlug,
-    Update,
-};
+export { Create, Delete, FetchAll, FetchBySlug, Update };

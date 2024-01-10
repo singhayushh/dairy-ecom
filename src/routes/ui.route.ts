@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: ui.route.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Router } from "express";
 import * as ui from "../controllers/ui.controller";
 

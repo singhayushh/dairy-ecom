@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: console.controller.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Request, Response, NextFunction } from "express";
 import * as userService from "../services/user.service";
 import * as orderService from "../services/order.service";
@@ -17,7 +25,12 @@ const RenderDashboard = async (
     try {
         const customers = await userService.fetchAllUser();
         const orders = await orderService.fetchAllOrder();
-        return res.render("console/index", { customers, orders, user: res.locals.user,  notifications: res.locals.notifications });
+        return res.render("console/index", {
+            customers,
+            orders,
+            user: res.locals.user,
+            notifications: res.locals.notifications,
+        });
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -38,7 +51,11 @@ const RenderUsers = async (
 ): Promise<Response | void> => {
     try {
         const customers = await userService.fetchAllUser();
-        return res.render("console/users", { customers, user: res.locals.user,  notifications: res.locals.notifications });
+        return res.render("console/users", {
+            customers,
+            user: res.locals.user,
+            notifications: res.locals.notifications,
+        });
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);

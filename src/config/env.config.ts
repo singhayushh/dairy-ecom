@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: env.config.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { config } from "dotenv";
 import { cleanEnv, num, str } from "envalid";
 import path from "path";
@@ -29,7 +37,7 @@ const env = cleanEnv(process.env, {
     REDIS_HOST: str({ default: "127.0.0.1" }),
     REDIS_PORT: num({ default: 6379 }),
     REDIS_PASSWORD: str({ default: "" }),
-    SESSION_EXPIRY: num({ default: 84600 })
+    SESSION_EXPIRY: num({ default: 84600 }),
 });
 
 export default env;

@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: cloudinary.config.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { v2 as cloudinary } from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import env from "./env.config";

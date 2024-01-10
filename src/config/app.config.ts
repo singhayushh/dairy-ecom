@@ -1,6 +1,12 @@
-// app.config.ts
+/*
+ * Author: Ayush Singh
+ * File: app.config.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
 
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 
 // Load environment variables based on the run command
 if (!process.env.NODE_ENV) {
@@ -9,12 +15,12 @@ if (!process.env.NODE_ENV) {
     dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 }
 
-import env from './env.config';
+import env from "./env.config";
 
 const appConfig = {
     PROJECT_NAME: String(env.PROJECT_NAME),
     MONGO_URI: String(env.CONNECTION_URI),
-    BASE_URL: String(env.BASE_URL) || 'http://127.0.0.1',
+    BASE_URL: String(env.BASE_URL) || "http://127.0.0.1",
     PORT: Number(env.PORT),
 };
 

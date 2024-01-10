@@ -1,3 +1,11 @@
+/*
+ * Author: Ayush Singh
+ * File: ui.controller.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Request, Response, NextFunction } from "express";
 import * as userService from "../services/user.service";
 import * as productService from "../services/product.service";
@@ -18,7 +26,11 @@ const RenderSettings = async (
     try {
         const user = await userService.fetchUser(res.locals.user._id);
         if (!user) res.redirect("/404");
-        return res.render("settings/index", { user, cart: res.locals.cart, notifications: res.locals.notifications });
+        return res.render("settings/index", {
+            user,
+            cart: res.locals.cart,
+            notifications: res.locals.notifications,
+        });
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -39,12 +51,31 @@ const RenderHome = async (
 ): Promise<Response | void> => {
     try {
         const products = await productService.fetchAllProduct();
-        const milkProducts = products.filter(product => product.category === ProductCategory.MILK);
-        const butterProducts = products.filter(product => product.category === ProductCategory.BUTTER);
-        const creamProducts = products.filter(product => product.category === ProductCategory.CREAM);
-        const gheeProducts = products.filter(product => product.category === ProductCategory.GHEE);
-        const otherProducts = products.filter(product => product.category === ProductCategory.OTHERS);
-        return res.render("home/index", { products, milkProducts, butterProducts, creamProducts, gheeProducts, otherProducts, cart: res.locals.cart, notifications: res.locals.notifications });
+        const milkProducts = products.filter(
+            (product) => product.category === ProductCategory.MILK
+        );
+        const butterProducts = products.filter(
+            (product) => product.category === ProductCategory.BUTTER
+        );
+        const creamProducts = products.filter(
+            (product) => product.category === ProductCategory.CREAM
+        );
+        const gheeProducts = products.filter(
+            (product) => product.category === ProductCategory.GHEE
+        );
+        const otherProducts = products.filter(
+            (product) => product.category === ProductCategory.OTHERS
+        );
+        return res.render("home/index", {
+            products,
+            milkProducts,
+            butterProducts,
+            creamProducts,
+            gheeProducts,
+            otherProducts,
+            cart: res.locals.cart,
+            notifications: res.locals.notifications,
+        });
     } catch (error: any) {
         next(error);
     }
@@ -64,12 +95,31 @@ const RenderStore = async (
 ): Promise<Response | void> => {
     try {
         const products = await productService.fetchAllProduct();
-        const milkProducts = products.filter(product => product.category === ProductCategory.MILK);
-        const butterProducts = products.filter(product => product.category === ProductCategory.BUTTER);
-        const creamProducts = products.filter(product => product.category === ProductCategory.CREAM);
-        const gheeProducts = products.filter(product => product.category === ProductCategory.GHEE);
-        const otherProducts = products.filter(product => product.category === ProductCategory.OTHERS);
-        return res.render("home/store", { products, milkProducts, butterProducts, creamProducts, gheeProducts, otherProducts, cart: res.locals.cart, notifications: res.locals.notifications });
+        const milkProducts = products.filter(
+            (product) => product.category === ProductCategory.MILK
+        );
+        const butterProducts = products.filter(
+            (product) => product.category === ProductCategory.BUTTER
+        );
+        const creamProducts = products.filter(
+            (product) => product.category === ProductCategory.CREAM
+        );
+        const gheeProducts = products.filter(
+            (product) => product.category === ProductCategory.GHEE
+        );
+        const otherProducts = products.filter(
+            (product) => product.category === ProductCategory.OTHERS
+        );
+        return res.render("home/store", {
+            products,
+            milkProducts,
+            butterProducts,
+            creamProducts,
+            gheeProducts,
+            otherProducts,
+            cart: res.locals.cart,
+            notifications: res.locals.notifications,
+        });
     } catch (error: any) {
         next(error);
     }
@@ -89,7 +139,9 @@ const RenderAbout = async (
 ): Promise<Response | void> => {
     try {
         // Add any necessary logic to fetch data for the about page
-        return res.render("home/about", { /* Add necessary data here */ });
+        return res.render("home/about", {
+            /* Add necessary data here */
+        });
     } catch (error: any) {
         next(error);
     }
@@ -109,7 +161,9 @@ const RenderTnC = async (
 ): Promise<Response | void> => {
     try {
         // Add any necessary logic to fetch data for the terms and conditions page
-        return res.render("home/tnc", { /* Add necessary data here */ });
+        return res.render("home/tnc", {
+            /* Add necessary data here */
+        });
     } catch (error: any) {
         next(error);
     }
@@ -129,7 +183,9 @@ const RenderPrivacyPolicy = async (
 ): Promise<Response | void> => {
     try {
         // Add any necessary logic to fetch data for the privacy policy page
-        return res.render("home/privacy", { /* Add necessary data here */ });
+        return res.render("home/privacy", {
+            /* Add necessary data here */
+        });
     } catch (error: any) {
         next(error);
     }
@@ -149,7 +205,9 @@ const RenderRefundPolicy = async (
 ): Promise<Response | void> => {
     try {
         // Add any necessary logic to fetch data for the refund policy page
-        return res.render("home/refund", { /* Add necessary data here */ });
+        return res.render("home/refund", {
+            /* Add necessary data here */
+        });
     } catch (error: any) {
         next(error);
     }

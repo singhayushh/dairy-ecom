@@ -1,8 +1,13 @@
+/*
+ * Author: Ayush Singh
+ * File: address.controller.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
 import { Request, Response, NextFunction } from "express";
-import {
-    AddressDto,
-    AddressUpdateDto,
-} from "../dtos/address.dto";
+import { AddressDto, AddressUpdateDto } from "../dtos/address.dto";
 import { generateResponse } from "../utils/response.creator";
 import * as addressService from "../services/address.service";
 
@@ -71,9 +76,16 @@ const FetchAll = async (
 ): Promise<Response | void> => {
     try {
         // service call to fetch all addresses
-        const addresses = await addressService.fetchAllAddress(res.locals.user._id)
+        const addresses = await addressService.fetchAllAddress(
+            res.locals.user._id
+        );
 
-        return res.render("settings/address", { addresses, user: res.locals.user, cart: res.locals.cart, notifications: res.locals.notifications });
+        return res.render("settings/address", {
+            addresses,
+            user: res.locals.user,
+            cart: res.locals.cart,
+            notifications: res.locals.notifications,
+        });
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
@@ -132,17 +144,11 @@ const Update = async (
         // if returned address is null, which means incorrect address id
         if (!address) return res.redirect("/404");
 
-        return res.redirect("/settings/address?message=success")
+        return res.redirect("/settings/address?message=success");
         // eslint-disable-next-line
     } catch (error: any) {
         next(error);
     }
 };
 
-export {
-    Create,
-    Delete,
-    FetchAll,
-    FetchBySlug,
-    Update,
-};
+export { Create, Delete, FetchAll, FetchBySlug, Update };

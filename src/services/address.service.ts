@@ -1,7 +1,19 @@
-import { randomBytes } from 'crypto';
-import { AddressDto, AddressSchemaDto, AddressUpdateDto } from '../dtos/address.dto';
-import { Types } from 'mongoose';
-import * as addressRepository from '../repositories/address.repo';
+/*
+ * Author: Ayush Singh
+ * File: address.service.ts
+ * Date: 2024-01-10
+ *
+ * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
+ */
+
+import { randomBytes } from "crypto";
+import {
+    AddressDto,
+    AddressSchemaDto,
+    AddressUpdateDto,
+} from "../dtos/address.dto";
+import { Types } from "mongoose";
+import * as addressRepository from "../repositories/address.repo";
 
 /**
  * Creates a new address.
@@ -10,15 +22,18 @@ import * as addressRepository from '../repositories/address.repo';
  * @param user - User identifier associated with the address.
  * @returns Promise<AddressSchemaDto> - Created address.
  */
-const createAddress = (dto: AddressDto, user: Types.ObjectId): Promise<AddressSchemaDto> => {
-  // Generate a unique slug for the address using random bytes
-  dto.slug = randomBytes(3).toString("hex");
-  
-  // Assign the user identifier to the 'by' field in the address
-  dto.by = user;
+const createAddress = (
+    dto: AddressDto,
+    user: Types.ObjectId
+): Promise<AddressSchemaDto> => {
+    // Generate a unique slug for the address using random bytes
+    dto.slug = randomBytes(3).toString("hex");
 
-  // Call the repository function to create the address
-  return addressRepository.create(dto);
+    // Assign the user identifier to the 'by' field in the address
+    dto.by = user;
+
+    // Call the repository function to create the address
+    return addressRepository.create(dto);
 };
 
 /**
@@ -27,15 +42,17 @@ const createAddress = (dto: AddressDto, user: Types.ObjectId): Promise<AddressSc
  * @param slug - Unique identifier for the address.
  * @returns Promise<AddressSchemaDto | null> - Deleted address or null if not found.
  */
-const deleteAddress = async (slug: string): Promise<AddressSchemaDto | null> => {
-  // Find the address by its slug
-  const address = await addressRepository.findOneBySlug(slug);
+const deleteAddress = async (
+    slug: string
+): Promise<AddressSchemaDto | null> => {
+    // Find the address by its slug
+    const address = await addressRepository.findOneBySlug(slug);
 
-  // If the address is not found, return null
-  if (!address) return null;
+    // If the address is not found, return null
+    if (!address) return null;
 
-  // Call the repository function to delete the address
-  return addressRepository.deleteOne(address._id);
+    // Call the repository function to delete the address
+    return addressRepository.deleteOne(address._id);
 };
 
 /**
@@ -44,9 +61,11 @@ const deleteAddress = async (slug: string): Promise<AddressSchemaDto | null> => 
  * @param user - User identifier.
  * @returns Promise<AddressSchemaDto[]> - List of addresses.
  */
-const fetchAllAddress = async (user?: Types.ObjectId): Promise<AddressSchemaDto[]> => {
-  // Call the repository function to find all addresses for the user
-  return addressRepository.find(user);
+const fetchAllAddress = async (
+    user?: Types.ObjectId
+): Promise<AddressSchemaDto[]> => {
+    // Call the repository function to find all addresses for the user
+    return addressRepository.find(user);
 };
 
 /**
@@ -56,8 +75,8 @@ const fetchAllAddress = async (user?: Types.ObjectId): Promise<AddressSchemaDto[
  * @returns Promise<AddressSchemaDto | null> - Found address or null if not found.
  */
 const fetchAddress = async (slug: string): Promise<AddressSchemaDto | null> => {
-  // Call the repository function to find the address by its slug
-  return addressRepository.findOneBySlug(slug);
+    // Call the repository function to find the address by its slug
+    return addressRepository.findOneBySlug(slug);
 };
 
 /**
@@ -67,21 +86,24 @@ const fetchAddress = async (slug: string): Promise<AddressSchemaDto | null> => {
  * @param dto - AddressUpdateDto containing updated address details.
  * @returns Promise<AddressSchemaDto | null> - Updated address or null if not found.
  */
-const updateAddress = async (slug: string, dto: AddressUpdateDto): Promise<AddressSchemaDto | null> => {
-  // Find the address by its slug
-  const address = await addressRepository.findOneBySlug(slug);
+const updateAddress = async (
+    slug: string,
+    dto: AddressUpdateDto
+): Promise<AddressSchemaDto | null> => {
+    // Find the address by its slug
+    const address = await addressRepository.findOneBySlug(slug);
 
-  // If the address is not found, return null
-  if (!address) return null;
+    // If the address is not found, return null
+    if (!address) return null;
 
-  // Call the repository function to update the address
-  return addressRepository.updateOne(address._id, dto);
+    // Call the repository function to update the address
+    return addressRepository.updateOne(address._id, dto);
 };
 
 export {
-  createAddress,
-  deleteAddress,
-  fetchAddress,
-  fetchAllAddress,
-  updateAddress,
+    createAddress,
+    deleteAddress,
+    fetchAddress,
+    fetchAllAddress,
+    updateAddress,
 };
