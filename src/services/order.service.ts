@@ -13,6 +13,7 @@ import * as orderRepository from '../repositories/order.repo';
 const createOrder = (dto: OrderDto, user: Types.ObjectId): Promise<OrderSchemaDto> => {
   // Generate a unique slug for the order using random bytes
   dto.identifier = randomBytes(3).toString("hex");
+  dto.trackingId = dto.identifier;
   
   // Assign the user identifier to the 'by' field in the order
   dto.user = user;

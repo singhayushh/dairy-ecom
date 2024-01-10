@@ -101,14 +101,9 @@ type ProductPaginationDto = {
  */
 enum ProductCategory {
   MILK = 'Milk',
-  YOGURT = 'Yogurt',
-  CHEESE = 'Cheese',
   BUTTER = 'Butter',
   CREAM = 'Cream',
-  ICE_CREAM = 'Ice Cream',
-  MILK_POWDER = 'Milk Powder',
-  CONDENSED_MILK = 'Condensed Milk',
-  DAIRY_BASED_BEVERAGES = 'Dairy-based Beverages',
+  GHEE = 'Ghee',
   OTHERS = 'Others',
 }
 

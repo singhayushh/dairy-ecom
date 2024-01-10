@@ -1,6 +1,7 @@
 import { randomBytes } from 'crypto';
 import { RoleDto, RoleSchemaDto, RoleUpdateDto } from '../dtos/role.dto';
 import * as roleRepository from '../repositories/role.repo';
+import { Types } from 'mongoose';
 
 /**
  * Creates a new role.
@@ -57,6 +58,17 @@ const fetchRole = async (slug: string): Promise<RoleSchemaDto | null> => {
 };
 
 /**
+ * Fetches an role based on its id.
+ *
+ * @param id - Unique identifier for the role.
+ * @returns Promise<RoleSchemaDto | null> - Found role or null if not found.
+ */
+const fetchRoleById = async (id: Types.ObjectId): Promise<RoleSchemaDto | null> => {
+  // Call the repository function to find the role by its slug
+  return roleRepository.findOne(id);
+};
+
+/**
  * Updates an role based on its slug.
  *
  * @param slug - Unique identifier for the role.
@@ -78,6 +90,7 @@ export {
   createRole,
   deleteRole,
   fetchRole,
+  fetchRoleById,
   fetchAllRole,
   updateRole,
 };
