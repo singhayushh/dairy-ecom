@@ -74,7 +74,7 @@ const FetchAll = async (
     try {
         const page = String(req.query.page ?? "settings");
         // service call to fetch all orders
-        const orders = await orderService.fetchAllOrder(res.locals.user._id);
+        const orders = await orderService.fetchAllOrder( page == "console" ? undefined : res.locals.user._id);
         return res.render(`/${page}/orders?page=${page}`, { orders, user: res.locals.user, cart: res.locals.cart, notifications: res.locals.notifications });
         // eslint-disable-next-line
     } catch (error: any) {

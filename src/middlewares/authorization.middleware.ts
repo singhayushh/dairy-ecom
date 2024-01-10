@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { FetchRoleById } from '../services/role.service';
+import { fetchRoleById } from '../services/role.service';
 import { FetchRequiredPerms } from '../utils/permission.parser';
 import { generateResponse } from '../utils/response.creator';
 import { Types } from 'mongoose';
@@ -20,7 +20,7 @@ const AuthorizationMiddleware = (
       let allow = false;
 
       // Fetch the user's role based on the role ID in res.locals.user
-      const userRole = await FetchRoleById(new Types.ObjectId(res.locals.user.role));
+      const userRole = await fetchRoleById(new Types.ObjectId(res.locals.user.role));
 
       // If userRole is not found, deny access (403 Forbidden)
       if (!userRole) return generateResponse(res, 403);
