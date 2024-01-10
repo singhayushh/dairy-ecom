@@ -27,7 +27,7 @@ const create = async (
 const deleteOne = async (
     id: Types.ObjectId
 ): Promise<AssetSchemaDto | null> => {
-    return Asset.findOneAndDelete({ _id: id });
+    return Asset.findOneAndDelete({ _id: id }).lean();
 };
 
 /**
@@ -38,8 +38,8 @@ const deleteOne = async (
 const find = async (
     userId?: Types.ObjectId
 ): Promise<AssetSchemaDto[]> => {
-    if (userId) return Asset.find({ by: userId }).sort({ createdAt: 1 });
-    return Asset.find().sort({ createdAt: 1 });
+    if (userId) return Asset.find({ by: userId }).sort({ createdAt: 1 }).lean();
+    return Asset.find().sort({ createdAt: 1 }).lean();
 };
 
 /**
@@ -51,7 +51,7 @@ const find = async (
 const findOne = async (
     id: Types.ObjectId
 ): Promise<AssetSchemaDto | null> => {
-    return Asset.findById(id);
+    return Asset.findById(id).lean();
 };
 
 /**
@@ -63,7 +63,7 @@ const findOne = async (
 const findOneBySlug = async (
     slug: string
 ): Promise<AssetSchemaDto | null> => {
-    return Asset.findOne({ slug });
+    return Asset.findOne({ slug }).lean();
 };
 
 /**
@@ -77,7 +77,7 @@ const updateOne = async (
     id: Types.ObjectId,
     dto: AssetUpdateDto
 ): Promise<AssetSchemaDto | null> => {
-    return Asset.findOneAndUpdate({ _id: id }, dto, { new: true });
+    return Asset.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
 export {

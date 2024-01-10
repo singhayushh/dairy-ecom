@@ -27,7 +27,7 @@ const create = async (
 const deleteOne = async (
     id: Types.ObjectId
 ): Promise<ProductSchemaDto | null> => {
-    return Product.findOneAndDelete({ _id: id });
+    return Product.findOneAndDelete({ _id: id }).lean();
 };
 
 /**
@@ -38,8 +38,8 @@ const deleteOne = async (
 const find = async (
     userId?: Types.ObjectId
 ): Promise<ProductSchemaDto[]> => {
-    if (userId) return Product.find({ by: userId }).sort({ createdAt: 1 });
-    return Product.find().sort({ createdAt: 1 });
+    if (userId) return Product.find({ by: userId }).sort({ createdAt: 1 }).lean();
+    return Product.find().sort({ createdAt: 1 }).lean();
 };
 
 /**
@@ -51,7 +51,7 @@ const find = async (
 const findOne = async (
     id: Types.ObjectId
 ): Promise<ProductSchemaDto | null> => {
-    return Product.findById(id);
+    return Product.findById(id).lean();
 };
 
 /**
@@ -63,7 +63,7 @@ const findOne = async (
 const findOneBySlug = async (
     slug: string
 ): Promise<ProductSchemaDto | null> => {
-    return Product.findOne({ slug });
+    return Product.findOne({ slug }).lean();
 };
 
 /**
@@ -77,7 +77,7 @@ const updateOne = async (
     id: Types.ObjectId,
     dto: ProductUpdateDto
 ): Promise<ProductSchemaDto | null> => {
-    return Product.findOneAndUpdate({ _id: id }, dto, { new: true });
+    return Product.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
 export {

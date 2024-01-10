@@ -27,7 +27,7 @@ const create = async (
 const deleteOne = async (
     id: Types.ObjectId
 ): Promise<AddressSchemaDto | null> => {
-    return Address.findOneAndDelete({ _id: id });
+    return Address.findOneAndDelete({ _id: id }).lean();
 };
 
 /**
@@ -38,8 +38,8 @@ const deleteOne = async (
 const find = async (
     userId?: Types.ObjectId
 ): Promise<AddressSchemaDto[]> => {
-    if (userId) return Address.find({ by: userId }).sort({ createdAt: 1 });
-    return Address.find().sort({ createdAt: 1 });
+    if (userId) return Address.find({ by: userId }).sort({ createdAt: 1 }).lean();
+    return Address.find().sort({ createdAt: 1 }).lean();
 };
 
 /**
@@ -51,7 +51,7 @@ const find = async (
 const findOne = async (
     id: Types.ObjectId
 ): Promise<AddressSchemaDto | null> => {
-    return Address.findById(id);
+    return Address.findById(id).lean();
 };
 
 /**
@@ -63,7 +63,7 @@ const findOne = async (
 const findOneBySlug = async (
     slug: string
 ): Promise<AddressSchemaDto | null> => {
-    return Address.findOne({ slug });
+    return Address.findOne({ slug }).lean();
 };
 
 /**
@@ -77,7 +77,7 @@ const updateOne = async (
     id: Types.ObjectId,
     dto: AddressUpdateDto
 ): Promise<AddressSchemaDto | null> => {
-    return Address.findOneAndUpdate({ _id: id }, dto, { new: true });
+    return Address.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
 export {

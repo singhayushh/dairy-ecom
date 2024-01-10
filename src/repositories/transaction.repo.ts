@@ -27,7 +27,7 @@ const create = async (
 const deleteOne = async (
     id: Types.ObjectId
 ): Promise<TransactionSchemaDto | null> => {
-    return Transaction.findOneAndDelete({ _id: id });
+    return Transaction.findOneAndDelete({ _id: id }).lean();
 };
 
 /**
@@ -38,8 +38,8 @@ const deleteOne = async (
 const find = async (
     userId?: Types.ObjectId
 ): Promise<TransactionSchemaDto[]> => {
-    if (userId) return Transaction.find({ by: userId }).sort({ createdAt: 1 });
-    return Transaction.find().sort({ createdAt: 1 });
+    if (userId) return Transaction.find({ by: userId }).sort({ createdAt: 1 }).lean();
+    return Transaction.find().sort({ createdAt: 1 }).lean();
 };
 
 /**
@@ -51,7 +51,7 @@ const find = async (
 const findOne = async (
     id: Types.ObjectId
 ): Promise<TransactionSchemaDto | null> => {
-    return Transaction.findById(id);
+    return Transaction.findById(id).lean();
 };
 
 /**
@@ -63,7 +63,7 @@ const findOne = async (
 const findOneBySlug = async (
     slug: string
 ): Promise<TransactionSchemaDto | null> => {
-    return Transaction.findOne({ slug });
+    return Transaction.findOne({ slug }).lean();
 };
 
 /**
@@ -77,7 +77,7 @@ const updateOne = async (
     id: Types.ObjectId,
     dto: TransactionUpdateDto
 ): Promise<TransactionSchemaDto | null> => {
-    return Transaction.findOneAndUpdate({ _id: id }, dto, { new: true });
+    return Transaction.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
 export {

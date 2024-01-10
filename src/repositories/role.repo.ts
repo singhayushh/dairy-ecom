@@ -27,7 +27,7 @@ const create = async (
 const deleteOne = async (
     id: Types.ObjectId
 ): Promise<RoleSchemaDto | null> => {
-    return Role.findOneAndDelete({ _id: id });
+    return Role.findOneAndDelete({ _id: id }).lean();
 };
 
 /**
@@ -39,7 +39,7 @@ const find = async (
     userId?: Types.ObjectId
 ): Promise<RoleSchemaDto[]> => {
     if (userId) return Role.find({ by: userId }).sort({ createdAt: 1 });
-    return Role.find().sort({ createdAt: 1 });
+    return Role.find().sort({ createdAt: 1 }).lean();
 };
 
 /**
@@ -51,7 +51,7 @@ const find = async (
 const findOne = async (
     id: Types.ObjectId
 ): Promise<RoleSchemaDto | null> => {
-    return Role.findById(id);
+    return Role.findById(id).lean();
 };
 
 /**
@@ -63,7 +63,7 @@ const findOne = async (
 const findOneBySlug = async (
     slug: string
 ): Promise<RoleSchemaDto | null> => {
-    return Role.findOne({ slug });
+    return Role.findOne({ slug }).lean();
 };
 
 /**
@@ -77,7 +77,7 @@ const updateOne = async (
     id: Types.ObjectId,
     dto: RoleUpdateDto
 ): Promise<RoleSchemaDto | null> => {
-    return Role.findOneAndUpdate({ _id: id }, dto, { new: true });
+    return Role.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
 export {

@@ -27,7 +27,7 @@ const create = async (
 const deleteOne = async (
     id: Types.ObjectId
 ): Promise<OrderSchemaDto | null> => {
-    return Order.findOneAndDelete({ _id: id });
+    return Order.findOneAndDelete({ _id: id }).lean();
 };
 
 /**
@@ -38,8 +38,8 @@ const deleteOne = async (
 const find = async (
     userId?: Types.ObjectId
 ): Promise<OrderSchemaDto[]> => {
-    if (userId) return Order.find({ by: userId }).sort({ createdAt: 1 });
-    return Order.find().sort({ createdAt: 1 });
+    if (userId) return Order.find({ by: userId }).sort({ createdAt: 1 }).lean();
+    return Order.find().sort({ createdAt: 1 }).lean();
 };
 
 /**
@@ -51,7 +51,7 @@ const find = async (
 const findOne = async (
     id: Types.ObjectId
 ): Promise<OrderSchemaDto | null> => {
-    return Order.findById(id);
+    return Order.findById(id).lean();
 };
 
 /**
@@ -63,7 +63,7 @@ const findOne = async (
 const findOneBySlug = async (
     slug: string
 ): Promise<OrderSchemaDto | null> => {
-    return Order.findOne({ identifier: slug });
+    return Order.findOne({ identifier: slug }).lean();
 };
 
 /**
@@ -77,7 +77,7 @@ const updateOne = async (
     id: Types.ObjectId,
     dto: OrderUpdateDto
 ): Promise<OrderSchemaDto | null> => {
-    return Order.findOneAndUpdate({ _id: id }, dto, { new: true });
+    return Order.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
 export {

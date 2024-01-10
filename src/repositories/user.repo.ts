@@ -19,7 +19,7 @@ const create = async (createUserDto: UserDto): Promise<UserSchemaDto> => {
  * @returns {(Promise<UserSchemaDto | null>)} promise containing the deleted user document
  */
 const deleteOne = async (id: Types.ObjectId): Promise<UserSchemaDto | null> => {
-    return User.findOneAndDelete(id).select({ password: 0 });
+    return User.findOneAndDelete(id).select({ password: 0 }).lean();
 };
 
 /**
@@ -27,8 +27,9 @@ const deleteOne = async (id: Types.ObjectId): Promise<UserSchemaDto | null> => {
  *
  * @returns {Promise<UserSchemaDto[]>} promise containing the returned list of user documents
  */
-const find = async (): Promise<UserSchemaDto[]> => {
-    return User.find().select({ password: 0 }).sort({ createdAt: 1 });
+const find = async (role?: Types.ObjectId): Promise<UserSchemaDto[]> => {
+    if (role) return User.find({ role }).select({ password: 0 }).sort({ createdAt: 1 }).lean();
+    return User.find().select({ password: 0 }).sort({ createdAt: 1 }).lean();
 };
 
 /**
@@ -38,7 +39,7 @@ const find = async (): Promise<UserSchemaDto[]> => {
  * @returns {(Promise<UserSchemaDto | null>)} promise containing the returned user document
  */
 const findByEmail = async (email: string): Promise<UserSchemaDto | null> => {
-    return User.findOne({ email }).populate({ path: "profile" });
+    return User.findOne({ email }).populate({ path: "profile" }).lean();
 };
 
 /**
@@ -58,7 +59,7 @@ const findByPhone = async (phone: string): Promise<UserSchemaDto | null> => {
  * @returns {(Promise<UserSchemaDto | null>)} promise containing the returned user document
  */
 const findById = async (id: Types.ObjectId): Promise<UserSchemaDto | null> => {
-    return User.findById(id);
+    return User.findById(id).lean();
 };
 
 /**
@@ -70,7 +71,7 @@ const findById = async (id: Types.ObjectId): Promise<UserSchemaDto | null> => {
 const findByResetToken = async (
     resetToken: string
 ): Promise<UserSchemaDto | null> => {
-    return User.findOne({ resetToken }).select({ password: 0 });
+    return User.findOne({ resetToken }).select({ password: 0 }).lean();
 };
 
 /**
@@ -82,7 +83,7 @@ const findByResetToken = async (
 const findByVerificationToken = async (
     verificationToken: string
 ): Promise<UserSchemaDto | null> => {
-    return User.findOne({ verificationToken }).select({ password: 0 });
+    return User.findOne({ verificationToken }).select({ password: 0 }).lean();
 };
 
 /**
@@ -123,7 +124,7 @@ const update = async (
 ): Promise<UserSchemaDto | null> => {
     return User.findOneAndUpdate({ _id: id }, dto, { new: true }).select({
         password: 0,
-    });
+    }).lean();
 };
 
 export {

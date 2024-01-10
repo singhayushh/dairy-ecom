@@ -27,7 +27,7 @@ const create = async (
 const deleteOne = async (
     id: Types.ObjectId
 ): Promise<CartItemSchemaDto | null> => {
-    return CartItem.findOneAndDelete({ _id: id });
+    return CartItem.findOneAndDelete({ _id: id }).lean();
 };
 
 /**
@@ -38,8 +38,8 @@ const deleteOne = async (
 const find = async (
     userId?: Types.ObjectId
 ): Promise<CartItemSchemaDto[]> => {
-    if (userId) return CartItem.find({ by: userId }).sort({ createdAt: 1 });
-    return CartItem.find().sort({ createdAt: 1 });
+    if (userId) return CartItem.find({ by: userId }).sort({ createdAt: 1 }).lean();
+    return CartItem.find().sort({ createdAt: 1 }).lean();
 };
 
 /**
@@ -51,7 +51,7 @@ const find = async (
 const findOne = async (
     id: Types.ObjectId
 ): Promise<CartItemSchemaDto | null> => {
-    return CartItem.findById(id);
+    return CartItem.findById(id).lean();
 };
 
 /**
@@ -63,7 +63,7 @@ const findOne = async (
 const findOneBySlug = async (
     slug: string
 ): Promise<CartItemSchemaDto | null> => {
-    return CartItem.findOne({ slug });
+    return CartItem.findOne({ slug }).lean();
 };
 
 /**
@@ -77,7 +77,7 @@ const updateOne = async (
     id: Types.ObjectId,
     dto: CartItemUpdateDto
 ): Promise<CartItemSchemaDto | null> => {
-    return CartItem.findOneAndUpdate({ _id: id }, dto, { new: true });
+    return CartItem.findOneAndUpdate({ _id: id }, dto, { new: true }).lean();
 };
 
 export {
