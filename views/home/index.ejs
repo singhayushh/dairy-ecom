@@ -1,0 +1,136 @@
+<%- include('../layouts/root.ejs') %>
+
+<div
+    class="lg:h-[38rem] mx-auto flex max-w-screen-xl flex-col space-y-6 overflow-hidden px-6 pb-16 lg:flex-row lg:items-center">
+    <div class="w-full lg:w-1/2">
+        <div class="mt-10 lg:max-w-lg">
+            <p class="mb-4">— &nbsp&nbsp Excellence in Dairy</p>
+            <h1 class="font-[900] text-3xl text-neutral-900 lg:text-5xl lg:leading-snug">Welcome to Express Dairy
+                Company Ltd.</h1>
+
+            <div class="mt-8 space-y-5 text-neutral-600">Pioneering quality dairy products – delivering freshness,
+                reliability, and unmatched taste. Experience dairy excellence with Express Dairy Company Ltd.</div>
+        </div>
+
+        <div class="mt-8 w-full rounded-md bg-transparent lg:max-w-md">
+            <form class="flex flex-col sm:flex-row">
+                <a href="/store"
+                    class="m-1 h-12 transform rounded-md bg-neutral-900 px-4 py-2 text-white transition-colors duration-200 focus:bg-neutral-700 focus:outline-none hover:bg-neutral-700 leading-7">Shop
+                    Now</a>
+                <a href="/auth/register"
+                    class="m-1 h-12 border-neutral-900 border transform rounded-md bg-transparent px-4 py-2 text-neutral-900 transition-colors duration-200 focus:bg-neutral-700 focus:outline-none hover:text-white hover:bg-neutral-900 leading-7">Create
+                    Account</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="relative hidden h-full w-full items-center justify-center lg:flex lg:w-1/2">
+        <div class="absolute z-10 lg:left-0">
+            <div class="flex items-center rounded-md border border-neutral-100 bg-white px-4 py-3 shadow-lg">
+                <img class="h-24 w-24 rounded-full object-cover border-4 border-indigo-400/40" src="/img/hero.png"
+                    alt="Happy Customers" />
+                <p class="ml-4 w-56">
+                    <strong class="block text-4xl font-bold tracking-wide">4500+</strong>
+                    <span class="text-neutral-800 uppercase"> Happy customers </span>
+                </p>
+            </div>
+            <div
+                class="mt-2 flex flex-col items-start rounded-md border border-neutral-100 bg-white px-4 pt-3 pb-6 shadow-lg">
+                <strong class="block text-xl font-bold mx-auto text-green-500 mb-2 capitalize">You're in good
+                    hands</strong>
+                    
+                <div
+                    class="mt-2 flex flex-col space-y-3 divide-indigo-300 text-sm text-gray-700 sm:flex-row sm:space-y-0 sm:divide-x max-w-xs">
+                    <div class="flex pr-4 text-center">
+                        <p>Free of adulterants and artificial flavours</p>
+                    </div>
+                    <div class="flex pl-7 text-center">
+                        <p>Free of cholestrol, reagents and worries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img class="-scale-x-100 mt-auto ml-auto h-4/5 object-cover lg:max-w-2xl" src="/img/dairy.png"
+            alt="glasses photo" />
+    </div>
+</div>
+</div>
+
+
+<section class="bg-indigo-100 py-12 text-neutral-900 sm:py-16 lg:py-20 w-full">
+    <div class="mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center">
+        <div class="text-center">
+          <p class="text-lg font-medium text-indigo-600">What clients say about their experience with us</p>
+          <h2 class="mt-4 text-3xl font-bold text-neutral-900 sm:text-4xl xl:text-5xl">Client Testimonials</h2>
+        </div>
+  
+        <div class="order-3 mt-8 text-center md:mt-16">
+          <button class="m-1 h-12 transform rounded-md bg-neutral-900 px-4 py-2 text-white transition-colors duration-200 focus:bg-neutral-700 focus:outline-none hover:bg-neutral-700 leading-7">More reviews on TrustPilot</button>
+        </div>
+  
+        <div class="relative mx-auto mt-20 grid max-w-lg grid-cols-1 gap-6 md:max-w-none md:grid-cols-3 lg:gap-10">
+          <div class="flex flex-col overflow-hidden shadow-xl shadow-indigo-200">
+            <div class="flex flex-1 flex-col justify-between bg-white p-6 lg:py-8 lg:px-7">
+              <div class="flex-1">
+                <p class="text-2xl font-bold">Absolutely recommended!</p>
+  
+                <blockquote class="mt-8 flex-1">
+                  <p class="leading-relaxed text-neutral-900">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium dolores facere repellendus, velit quis fugiat.</p>
+                </blockquote>
+              </div>
+  
+              <div class="mt-8 border px-8 inline-flex items-center rounded-md shadow-sm atext-white py-1 g-indigo-400 ">
+                <div class="">
+                  <p class="text-base font-bold ">James Khawalski</p>
+                  <p class="mt-0.5 text-sm">CEO, Mavoline</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="flex flex-col overflow-hidden shadow-xl shadow-indigo-200">
+            <div class="flex flex-1 flex-col justify-between bg-white p-6 lg:py-8 lg:px-7">
+              <div class="flex-1">
+                <p class="text-2xl font-bold">Service was amazing!</p>
+  
+                <blockquote class="mt-8 flex-1">
+                  <p class="leading-relaxed text-neutral-900">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium dolores facere repellendus, velit quis fugiat.</p>
+                </blockquote>
+              </div>
+  
+              <div class="mt-8 border px-8 inline-flex items-center rounded-md shadow-sm atext-white py-1 g-indigo-400 ">
+                <div class="">
+                  <p class="text-base font-bold ">Jacob Jones</p>
+                  <p class="text-indigo-90 mt-0.5 text-sm">Youtube Personality</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="flex flex-col overflow-hidden shadow-xl shadow-indigo-200">
+            <div class="flex flex-1 flex-col justify-between bg-white p-6 lg:py-8 lg:px-7">
+              <div class="flex-1">
+                <p class="text-2xl font-bold">Saved me 1000s of hours</p>
+  
+                <blockquote class="mt-8 flex-1">
+                  <p class="leading-relaxed text-neutral-900">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium dolores facere repellendus, velit quis fugiat.</p>
+                </blockquote>
+              </div>
+  
+              <div class="mt-8 border px-8 inline-flex items-center rounded-md shadow-sm atext-white py-1 g-indigo-400 ">
+                <div class="">
+                  <p class="text-base font-bold ">Jenny Wilson</p>
+                  <p class="text-indigo-90 mt-0.5 text-sm">Esports Commentator</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+<%- include('../layouts/foot.ejs') %>

@@ -6,7 +6,7 @@
  * Kindly refrain from removing or modifying the lines above to acknowledge the authorship.
  */
 
-import mongoose, { ConnectionStates } from "mongoose";
+import mongoose from "mongoose";
 
 /**
  * Connects the application to MongoDB and returns the connection instance.
@@ -27,11 +27,11 @@ const connect = async (connectionURI: string): Promise<typeof mongoose> => {
  */
 const getConnectionState = (readyState: number): string => {
     const stateMap: Record<number, string> = {
-        [ConnectionStates.disconnected]: "Disconnected",
-        [ConnectionStates.connected]: "Connected",
-        [ConnectionStates.connecting]: "Connecting",
-        [ConnectionStates.disconnecting]: "Disconnecting",
-        [ConnectionStates.uninitialized]: "Uninitialized",
+        [mongoose.ConnectionStates.disconnected]: "Disconnected",
+        [mongoose.ConnectionStates.connected]: "Connected",
+        [mongoose.ConnectionStates.connecting]: "Connecting",
+        [mongoose.ConnectionStates.disconnecting]: "Disconnecting",
+        [mongoose.ConnectionStates.uninitialized]: "Uninitialized",
     };
 
     return stateMap[readyState] || "Unknown State";
